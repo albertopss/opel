@@ -1,0 +1,38 @@
+###Oil Pressure Sensor
+#   VCC --- VCC (Power)
+#   GND --- GND
+#   OUT --- A0 (ESP8266)
+
+#LED
+#   Anode (long leg) --- D1 (ESP8266)
+#   Cathode (short leg) --- Resistor --- GND
+
+#include <ESP8266WiFi.h>
+
+const int oilPressurePin = A0;  // Analog pin for oil pressure sensor
+const int ledPin = D1;           // Digital pin for LED
+const float thresholdPressure = 1.0;  // Adjust based on your sensor's output range
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, LOW);  // Ensure LED is off initially
+}
+
+void loop() {
+  int sensorValue = analogRead(oilPressurePin); // Read the analog value
+  float voltage = sensorValue * (3.3 / 1023.0); // Convert to voltage
+  float oilPressure = voltage; // Adjust this conversion based on your sensor
+
+  Serial.print("Oil Pressure (V): ");
+  Serial.println(oilPressure);
+
+  if (oilPressure < thresholdPressure) {
+    digitalWrite(ledPin, HIGH); // Turn on the LED
+  } else {
+    digitalWrite(ledPin, LOW);  // Turn off the LED
+  }
+
+  delay(1000); // Read every second
+}
+
