@@ -1,10 +1,7 @@
-Projecto para leer, procesar y analizar telemetria asi como digitalizar instrumentos a traves del puerto OBD2
-escrito en python3 ejecutado directamente en ALpine Linux y Docker.
-##################################################################
-Install Python and Necessary Packages
-Install Python: Alpine uses apk for package management. Install Python if it’s not already installed:
+Python Dashboard
 
-apk add python3 py3-pip
+##################################################################
+
 Install python-OBD: This library helps in interfacing with the OBD-II port.
 
 pip3 install python-OBD
